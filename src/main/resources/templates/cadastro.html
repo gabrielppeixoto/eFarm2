@@ -29,10 +29,20 @@
 
 
                             <div class="col-12">
-                                <label for="age" class="form-label">Idade <span class="text-muted">(Optional)</span></label>
+                                <label for="age" class="form-label">Idade <span class="text-muted"></span></label>
                                 <input type="number" th:field="*{age}" class="form-control" id="age">
                                 <div class="invalid-feedback">
                                     Digite sua idade.
+                                </div>
+                            </div>
+
+                            <div class="col-12">
+                                <label class="form-label"></label>
+                                <div th:each="type : ${T(com.gabrielpeixoto.eFarm.enums.UserType).values()}">
+                                    <div class="custom-control custom-radio custom-control-inline">
+                                        <input type="radio" th:field="*{userType}" th:value="${type}" class="custom-control-input">
+                                        <label class="custom-control-label" th:for="${#ids.prev('userType')}" th:text="${type}">Tipo</label>
+                                    </div>
                                 </div>
                             </div>
 
@@ -45,7 +55,7 @@
                             </div>
 
                             <div class="col-12">
-                                <label for="address" class="form-label">Endereç</label>
+                                <label for="address" class="form-label">Endereço</label>
                                 <input type="text" th:field="*{address}" class="form-control" id="address" placeholder="1234 Main St" required>
                                 <div class="invalid-feedback">
                                     Forneça seu endereço.
@@ -80,6 +90,22 @@
                                 <div class="invalid-feedback">
                                     CEP obrigatório.
                                 </div>
+                            </div>
+                        </div>
+
+                        <div class="col-12">
+                            <label for="email" class="form-label">E-mail</label>
+                            <input type="email" th:field="*{email}" class="form-control" id="email" placeholder="fulano@gmail.com" required>
+                            <div class="invalid-feedback">
+                                Forneça seu e-mail.
+                            </div>
+                        </div>
+
+                        <div class="col-12">
+                            <label for="password" class="form-label">Digite sua senha</label>
+                            <input type="password" th:field="*{password}" class="form-control" id="password" required>
+                            <div class="invalid-feedback">
+                                Forneça sua senha.
                             </div>
                         </div>
 

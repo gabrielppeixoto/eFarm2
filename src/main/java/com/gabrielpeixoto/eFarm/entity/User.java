@@ -1,12 +1,16 @@
 package com.gabrielpeixoto.eFarm.entity;
+import com.gabrielpeixoto.eFarm.enums.UserType;
+import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.persistence.*;
+import java.util.List;
 
 @Entity
 @Table(name = "usuario")
+@AllArgsConstructor
 @NoArgsConstructor
 @Getter
 @Setter
@@ -26,6 +30,19 @@ public class User {
 
     @Column(name = "identity", nullable = false)
     private String identityNumber;
+
+    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
+    private List<Drugstore> drugstores;
+
+    @Column(name = "user_email")
+    private String email;
+
+    @Column(name = "user_password")
+    private String password;
+
+    @Enumerated(EnumType.STRING)
+    @Column(name = "user_type")
+    private UserType userType;
 
     public User(String completeName, Integer age, String address, String identityNumber) {
         this.completeName = completeName;

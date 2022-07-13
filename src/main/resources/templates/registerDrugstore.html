@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <title>Registrar farmácia</title>
+
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link th:href="@{/webjars/bootstrap/css/bootstrap.min.css}"
+          rel="stylesheet"/>
+</head>
+<body>
+    <h2>Cadastro de farmácias</h2>
+
+    <form method="post" th:object="${drugstore}" th:action="@{/legalperson/register/new}">
+        <div class="mb-3">
+            <label for="drugstore_name" class="form-label">Razão social</label>
+            <input type="text" class="form-control" id="drugstore_name" placeholder="Drogarias ABC">
+        </div>
+        <div class="mb-3">
+            <label for="drugstore_address" class="form-label">Endereço</label>
+            <input type="text" class="form-control" id="drugstore_address" placeholder="Rua X">
+        </div>
+        <br>
+        <input type="submit" class="btn btn-primary" value="Cadastrar">
+    </form>
+
+    <script th:src="@{/webjars/jquery/jquery.min.js}"></script>
+    <script th:src="@{/webjars/bootstrap/js/bootstrap.min.js}"></script>
+</body>
+</html>
