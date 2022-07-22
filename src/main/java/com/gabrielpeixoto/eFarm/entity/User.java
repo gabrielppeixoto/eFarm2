@@ -34,10 +34,10 @@ public class User {
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
     private List<Drugstore> drugstores;
 
-    @Column(name = "user_email")
+    @Column(name = "user_email", unique = true)
     private String email;
 
-    @Column(name = "user_password")
+    @Column(name = "user_password", unique = true)
     private String password;
 
     @Enumerated(EnumType.STRING)

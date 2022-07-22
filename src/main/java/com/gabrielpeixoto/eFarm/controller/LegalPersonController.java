@@ -51,7 +51,6 @@ public class LegalPersonController {
     @PostMapping("/register/new")
     public String saveDrugstore(@ModelAttribute("drugstore") @Valid Drugstore drugstore)
     {
-        drugstore.setCnpj(drugstore.getUser().getIdentityNumber());
         drugstoreRepository.save(drugstore);
         return "redirect:/legalperson";
     }

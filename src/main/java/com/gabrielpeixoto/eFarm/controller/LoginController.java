@@ -7,6 +7,8 @@ package com.gabrielpeixoto.eFarm.controller;
 
 import com.gabrielpeixoto.eFarm.entity.User;
 import com.gabrielpeixoto.eFarm.enums.UserType;
+import com.gabrielpeixoto.eFarm.exceptions.IncorrectPasswordException;
+import com.gabrielpeixoto.eFarm.exceptions.UserNotFoundException;
 import com.gabrielpeixoto.eFarm.service.UserService;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Controller;
@@ -33,8 +35,10 @@ public class LoginController {
      * @return o nome do template da página de login
      */
     @GetMapping
-    public String goToLogin()
+    public String goToLogin(Model model)
     {
+        User user = new User();
+        model.addAttribute("loginInfo", user);
         return "login";
     }
 
@@ -62,11 +66,27 @@ public class LoginController {
     public String saveUser(@ModelAttribute("user") @Valid User user)
     {
         userService.saveUser(user);
-        //Vai para a página adequada de acordo com o tipo do usuário
-        if(user.getUserType() == UserType.PESSOA_FISICA)
-            return "redirect:/physicalperson";
-        else if(user.getUserType() == UserType.PESSOA_JURIDICA)
+        if(user.getUserType() == UserType.PESSOA_JURIDICA)
             return "redirect:/legalperson";
+        return "redirect:/login";
+    }
+
+    @PostMapping("/processaLogin")
+    public String login(@ModelAttribute("loginInfo") @Valid User user)
+    {
+        //Usuário não encontrado
+        if(userService.getUserByEmail(user.getEmail()) == null)
+            throw new UserNotFoundException();
+        else if(!userService.getUserByEmail(user.getEmail()).getPassword().equals(user.getPassword()))   //Senha incorreta
+            throw new IncorrectPasswordException();
+        else
+        {
+            //Vai para a página adequada de acordo com o tipo do usuário
+            if(user.getUserType() == UserType.PESSOA_FISICA)
+                return "redirect:/physicalperson";
+            else if(user.getUserType() == UserType.PESSOA_JURIDICA)
+                return "redirect:/legalperson";
+        }
         return "redirect:/login";
     }
 }

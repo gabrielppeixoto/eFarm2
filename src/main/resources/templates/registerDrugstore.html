@@ -14,11 +14,15 @@
     <form method="post" th:object="${drugstore}" th:action="@{/legalperson/register/new}">
         <div class="mb-3">
             <label for="drugstore_name" class="form-label">Razão social</label>
-            <input type="text" class="form-control" id="drugstore_name" placeholder="Drogarias ABC">
+            <input type="text" class="form-control" id="drugstore_name" th:field="*{'name'}" placeholder="Drogarias ABC">
         </div>
         <div class="mb-3">
             <label for="drugstore_address" class="form-label">Endereço</label>
-            <input type="text" class="form-control" id="drugstore_address" placeholder="Rua X">
+            <input type="text" class="form-control" id="drugstore_address" th:field="*{'address'}" placeholder="Rua X">
+        </div>
+        <div class="mb-3">
+            <label for="cnpj" class="form-label">Digite novamente seu CNPJ</label>
+            <input type="text" class="form-control" id="cnpj" th:field="*{'cnpj'}">
         </div>
         <br>
         <input type="submit" class="btn btn-primary" value="Cadastrar">

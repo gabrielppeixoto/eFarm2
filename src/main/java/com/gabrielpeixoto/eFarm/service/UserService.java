@@ -10,6 +10,7 @@ public interface UserService {
     List<User> getAllUsers();
     User saveUser(User user);
     User getUserById(Long id);
+    User getUserByEmail(String email);
     List<User> getUsersByName(String name);
     User getUserByIdentityNumber(String idn);
     User updateUser(User user);
