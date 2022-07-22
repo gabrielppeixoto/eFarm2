@@ -50,7 +50,7 @@
     </head>
     <body>
         <main class="form-signin">
-            <form>
+            <form method="post" th:action="@{/login/processaLogin}" th:object="${loginInfo}">
                 <h1 class="h3 mb-3 fw-normal text-center">Entrar</h1>
 
                 <div class="form-floating">
@@ -63,7 +63,7 @@
                 </div>
 
                 <div>
-                    <p class="text-center">Ainda não possui cadastro? <a th:href="@{/cadastro}">Clique aqui</a></p>
+                    <p class="text-center">Ainda não possui cadastro? <a th:href="@{/login/cadastro}">Clique aqui</a></p>
                 </div>
                 <button class="w-100 btn btn-lg btn-primary" type="submit">Sign in</button>
                 <p class="mt-5 mb-3 text-muted">&copy; Gabriel Peixoto</p>
