@@ -71,6 +71,13 @@ public class LoginController {
         return "redirect:/login";
     }
 
+    /**
+     * Processa as informações de login do usuário
+     * @param user os dados do usuário
+     * @return uma string para redirecionamento de página
+     * @throws UserNotFoundException se o usuário não existe
+     * @throws IncorrectPasswordException se a senha for incorreta
+     */
     @PostMapping("/processaLogin")
     public String login(@ModelAttribute("loginInfo") @Valid User user)
     {

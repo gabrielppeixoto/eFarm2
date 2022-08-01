@@ -48,7 +48,7 @@ public class Drugstore {
     private User user;
 
     /**
-     *
+     * Estoque do estabelecimento
      */
     @OneToMany(mappedBy = "drugstore", cascade = CascadeType.ALL)
     private List<Product> store;

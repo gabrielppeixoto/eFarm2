@@ -1,3 +1,8 @@
+/**
+ * Classe que implementa os métodos definidos na interface DrugstoreService
+ * @author Gabriel Porto Santos Peixoto
+ */
+
 package com.gabrielpeixoto.eFarm.service.impl;
 
 import com.gabrielpeixoto.eFarm.entity.Drugstore;
@@ -13,6 +18,9 @@ import java.util.List;
 @AllArgsConstructor
 public class DrugstoreServiceImpl implements DrugstoreService {
 
+    /**
+     * Injeção da dependência, para poder realizar as consultas
+     */
     private DrugstoreRepository drugstoreRepository;
 
     @Override

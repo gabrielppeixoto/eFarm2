@@ -1,3 +1,8 @@
+/**
+ * Enumera os tipos de usuário que irão utilizar o site
+ * @author Gabriel Porto Santos Peixoto
+ */
+
 package com.gabrielpeixoto.eFarm.enums;
 
 import lombok.AllArgsConstructor;
