@@ -10,6 +10,7 @@ Tendo em vista esse panorama, é apresentada a aplicação xxx. Seu principal ob
 sobre medicamentos e farmácias próximas, quanto aqueles que desejam disponibilizar seus serviços on-line.
 
 ## Instalação e uso
+Para utilizar a aplicação, não é necessária nenhuma instalação. Basta acessar [essa página.](https://gpsp-efarm2.herokuapp.com/)
 
 ## Funcionalidades
 Para ser possível desfrutar das funcionalidades do site, primeiro, os usuários devem fazer um cadastro, utilizando seus dados pessoais,
