@@ -6,6 +6,7 @@ package com.gabrielpeixoto.eFarm.controller;
 
 import com.gabrielpeixoto.eFarm.entity.Drugstore;
 import com.gabrielpeixoto.eFarm.repository.DrugstoreRepository;
+import com.gabrielpeixoto.eFarm.repository.UserRepository;
 import jakarta.validation.Valid;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Controller;
@@ -15,10 +16,13 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import java.util.List;
+
 @Controller
 @RequestMapping("/legalperson")
 @AllArgsConstructor
 public class LegalPersonController {
+    private UserRepository userRepository;
     private DrugstoreRepository drugstoreRepository;
     /**
      * Obtém acesso à página de login
@@ -54,4 +58,28 @@ public class LegalPersonController {
         drugstoreRepository.save(drugstore);
         return "redirect:/legalperson";
     }
+
+    /**
+     * Acessa a página de gerenciamento das farmácias do usuário
+     * @param model atributo que conterá todos os objetos 'Drugstore' relacionados ao usuário
+     * @return uma string com o nome do template
+     */
+    @GetMapping("/manageDrugstore")
+    public String goToManagementPage(Model model)
+    {
+//        List<Drugstore> drugstores = drugstoreRepository.findDrugstoresByUser(userRepository.findByEmail());
+//        model.addAttribute("drugstores", drugstores);
+        return "redirect:/manageDrugstore";
+    }
+
+    /**
+     * Acessa a página de atualização de informações da farmácia
+     * @param model atributo que conterá todos os objetos 'Drugstore' relacionados ao usuário
+     * @return uma string com o nome do template
+     */
+//    @GetMapping("/update")
+//    public String goToUpdatePage(Model model)
+//    {
+//
+//    }
 }

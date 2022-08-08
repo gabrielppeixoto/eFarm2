@@ -12,21 +12,26 @@
         <div class="container">
             <div class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start">
                 <ul class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0">
-                    <li><a href="#" class="nav-link px-2 text-secondary">Home</a></li>
-                    <li><a href="#" class="nav-link px-2 text-white">Features</a></li>
-                    <li><a href="#" class="nav-link px-2 text-white">Pricing</a></li>
-                    <li><a href="#" class="nav-link px-2 text-white">FAQs</a></li>
-                    <li><a href="#" class="nav-link px-2 text-white">About</a></li>
+                    <li><a th:href="@{/}" class="nav-link px-2 text-secondary">Home</a></li>
                 </ul>
             </div>
         </div>
     </header>
 
-    <h3>O que deseja fazer?</h3>
+    <button class="btn btn-primary btn-lg row justify-content-center" data-bs-toggle="collapse" data-bs-target="#searchButton" role="button" aria-expanded="false" aria-controls="collButton">Pesquisar um medicamento</button>
     <br>
-    <button class="btn btn-primary">Pesquisar um medicamento</button>
-    <br>
-    <button class="btn btn-secondary">Pesquisar por farmácias próximas</button>
+    <div class="collapse row justify-content-center" id="searchButton">
+        <form class="row g-2">
+            <div class="col-auto">
+                <label for="textArea" class="visually-hidden">Digite o nome do produto</label>
+                <input type="text" class="form-control" id="textArea" placeholder="Nome do produto">
+            </div>
+            <div class="col-auto">
+                <button type="submit" class="btn btn-primary mb-3">Pesquisar</button>
+            </div>
+        </form>
+    </div>
+
     <script th:src="@{/webjars/jquery/jquery.min.js}"></script>
     <script th:src="@{/webjars/bootstrap/js/bootstrap.min.js}"></script>
 </body>

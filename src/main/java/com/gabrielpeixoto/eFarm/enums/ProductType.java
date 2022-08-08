@@ -1,3 +1,8 @@
+/**
+ * Enumera os tipos de produtos aceitos no farmácia
+ * @author GAbriel Porto Santos Peixoto
+ */
+
 package com.gabrielpeixoto.eFarm.enums;
 
 import lombok.AllArgsConstructor;

@@ -1,3 +1,8 @@
+/**
+ * Classe que implementa os métodos definidos na interface UserService
+ * @author Gabriel Porto Santos Peixoto
+ */
+
 package com.gabrielpeixoto.eFarm.service.impl;
 
 import com.gabrielpeixoto.eFarm.entity.User;
@@ -11,6 +16,9 @@ import java.util.List;
 @Service
 @AllArgsConstructor
 public class UserServiceImpl implements UserService {
+    /**
+     * Injeção de dependência, para se poder realizar as consultas
+     */
     private UserRepository userRepository;
 
     @Override
