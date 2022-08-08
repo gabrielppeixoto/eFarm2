@@ -19,6 +19,8 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import javax.validation.Valid;
+import java.util.ArrayList;
+import java.util.List;
 
 @Controller
 @RequestMapping("/login")
@@ -38,6 +40,8 @@ public class LoginController {
     public String goToLogin(Model model)
     {
         User user = new User();
+        List<User> users = new ArrayList<>();
+        model.addAttribute("userList", users);
         model.addAttribute("loginInfo", user);
         return "login";
     }
@@ -53,6 +57,8 @@ public class LoginController {
     {
         //Create object to hold user data
         User user = new User();
+        List<User> users = new ArrayList<>();
+        model.addAttribute("userList", users);
         model.addAttribute("user", user);
         return "cadastro";
     }
@@ -66,8 +72,6 @@ public class LoginController {
     public String saveUser(@ModelAttribute("user") @Valid User user)
     {
         userService.saveUser(user);
-        if(user.getUserType() == UserType.PESSOA_JURIDICA)
-            return "redirect:/legalperson";
         return "redirect:/login";
     }
 

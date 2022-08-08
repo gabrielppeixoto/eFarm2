@@ -35,16 +35,7 @@
                                     Digite sua idade.
                                 </div>
                             </div>
-
-                            <div class="col-12">
-                                <label class="form-label"></label>
-                                <div th:each="type : ${T(com.gabrielpeixoto.eFarm.enums.UserType).values()}">
-                                    <div class="custom-control custom-radio custom-control-inline">
-                                        <input type="radio" th:field="*{userType}" th:value="${type}" class="custom-control-input">
-                                        <label class="custom-control-label" th:for="${#ids.prev('userType')}" th:text="${type}">Tipo</label>
-                                    </div>
-                                </div>
-                            </div>
+                            
 
                             <div class="col-12">
                                 <label for="identity" class="form-label">CPF / CNPJ </label>
