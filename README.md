@@ -23,3 +23,4 @@ e escolhendo o seu tipo de usuário. Usuários podem se cadastrar como pessoa f�
    ele poderá gerenciar as informações de seu estabelecimento no próprio site, podendo inserir novos produtos à medida que for necessário.
 
 ## Licensa
+Esta aplicação está sob licensa MIT.
