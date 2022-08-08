@@ -40,7 +40,7 @@ public class LoginController {
     public String goToLogin(Model model)
     {
         User user = new User();
-        List<User> users = new ArrayList<>();
+        List<User> users = userService.getAllUsers();
         model.addAttribute("userList", users);
         model.addAttribute("loginInfo", user);
         return "login";
