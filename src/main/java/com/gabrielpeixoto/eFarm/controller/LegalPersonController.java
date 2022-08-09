@@ -69,7 +69,7 @@ public class LegalPersonController {
     {
 //        List<Drugstore> drugstores = drugstoreRepository.findDrugstoresByUser(userRepository.findByEmail());
 //        model.addAttribute("drugstores", drugstores);
-        return "redirect:/manageDrugstore";
+        return "redirect:/legalperson/manageDrugstore";
     }
 
     /**
