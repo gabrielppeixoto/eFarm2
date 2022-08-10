@@ -1,4 +1,4 @@
-# eFarm2
+# eFarm
 Site para pesquisa e gerenciamento de farmácias e produtos farmacêuticos
 
 ## Objetivo
@@ -6,7 +6,7 @@ Graças ao avanço da tecnologia, muitas pessoas estão escolhendo realizar muit
 da Internet, tais como compras, reuniões, entre outros. Já algumas outras, fazem do empreendedorismo o seu meio de sustento, e
 veem na Web uma grande oportunidade de expor seu estabelecimento e demonstrar seus serviços, a fim de atrair maior público
 e renda.
-Tendo em vista esse panorama, é apresentada a aplicação xxx. Seu principal objetivo é auxiliar tanto aqueles que buscam informações
+Tendo em vista esse panorama, é apresentada a aplicação eFarm. Seu principal objetivo é auxiliar tanto aqueles que buscam informações
 sobre medicamentos e farmácias próximas, quanto aqueles que desejam disponibilizar seus serviços on-line.
 
 ## Instalação e uso
