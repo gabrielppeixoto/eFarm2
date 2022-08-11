@@ -6,6 +6,7 @@ package com.gabrielpeixoto.eFarm.controller;
 
 import com.gabrielpeixoto.eFarm.entity.Drugstore;
 import com.gabrielpeixoto.eFarm.repository.DrugstoreRepository;
+import com.gabrielpeixoto.eFarm.repository.LoggedUserRepository;
 import com.gabrielpeixoto.eFarm.repository.UserRepository;
 import jakarta.validation.Valid;
 import lombok.AllArgsConstructor;
@@ -22,8 +23,12 @@ import java.util.List;
 @RequestMapping("/legalperson")
 @AllArgsConstructor
 public class LegalPersonController {
+    /**
+     * Injeção das dependências
+     */
     private UserRepository userRepository;
     private DrugstoreRepository drugstoreRepository;
+    private LoggedUserRepository loggedUserRepository;
     /**
      * Obtém acesso à página de login
      * @return o nome do template da página de login
@@ -55,8 +60,20 @@ public class LegalPersonController {
     @PostMapping("/register/new")
     public String saveDrugstore(@ModelAttribute("drugstore") @Valid Drugstore drugstore)
     {
+        drugstore.setUser(userRepository.findByEmail(loggedUserRepository.getLastLoggedUser()));
         drugstoreRepository.save(drugstore);
         return "redirect:/legalperson";
+    }
+
+    /**
+     * Realiza o logout da aplicação e retorna à página principal
+     * @return string de redirecionamento para a página principal
+     */
+    @PostMapping("/exit")
+    public String logOut()
+    {
+        loggedUserRepository.deleteAll();
+        return "redirect:/";
     }
 
     /**
@@ -67,9 +84,9 @@ public class LegalPersonController {
     @GetMapping("/manageDrugstore")
     public String goToManagementPage(Model model)
     {
-//        List<Drugstore> drugstores = drugstoreRepository.findDrugstoresByUser(userRepository.findByEmail());
-//        model.addAttribute("drugstores", drugstores);
-        return "redirect:/legalperson/manageDrugstore";
+        List<Drugstore> drugstores = drugstoreRepository.findDrugstoresByUser(userRepository.findByEmail(loggedUserRepository.getLastLoggedUser()));
+        model.addAttribute("drugstores", drugstores);
+        return "manageDrugstore";
     }
 
     /**
@@ -77,9 +94,19 @@ public class LegalPersonController {
      * @param model atributo que conterá todos os objetos 'Drugstore' relacionados ao usuário
      * @return uma string com o nome do template
      */
-//    @GetMapping("/update")
-//    public String goToUpdatePage(Model model)
-//    {
-//
-//    }
+    @GetMapping("/editDrugstore")
+    public String goToEditDrugstorePage(Model model)
+    {
+        Drugstore drugstore = new Drugstore();
+        model.addAttribute("drugstore", drugstore);
+        return "paginaAtualizacao";
+    }
+
+    @GetMapping("/update")
+    public String goToUpdatePage(Model model)
+    {
+        Drugstore drugstore = new Drugstore();
+        model.addAttribute("drugstore", drugstore);
+        return "pagina";
+    }
 }

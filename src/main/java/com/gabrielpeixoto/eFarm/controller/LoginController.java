@@ -5,10 +5,12 @@
 
 package com.gabrielpeixoto.eFarm.controller;
 
+import com.gabrielpeixoto.eFarm.entity.LoggedUser;
 import com.gabrielpeixoto.eFarm.entity.User;
 import com.gabrielpeixoto.eFarm.enums.UserType;
 import com.gabrielpeixoto.eFarm.exceptions.IncorrectPasswordException;
 import com.gabrielpeixoto.eFarm.exceptions.UserNotFoundException;
+import com.gabrielpeixoto.eFarm.repository.LoggedUserRepository;
 import com.gabrielpeixoto.eFarm.service.UserService;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Controller;
@@ -31,6 +33,11 @@ public class LoginController {
      * Injeção da dependência userService, para acesso a métodos de manipulação de dados no banco de dados
      */
     private UserService userService;
+
+    /**
+     * Injeção da dependência loggedUserRepository, para acesso a métodos de manipulação de dados no banco de dados
+     */
+    private LoggedUserRepository loggedUserRepository;
 
     /**
      * Obtém acesso à página de login
@@ -85,6 +92,8 @@ public class LoginController {
     @PostMapping("/processaLogin")
     public String login(@ModelAttribute("loginInfo") @Valid User user)
     {
+//        System.out.println(userService.getUserByEmail(user.getEmail()).getPassword());
+//        System.out.println(user.getPassword());
         //Usuário não encontrado
         if(userService.getUserByEmail(user.getEmail()) == null)
             throw new UserNotFoundException();
@@ -92,12 +101,11 @@ public class LoginController {
             throw new IncorrectPasswordException();
         else
         {
-            //Vai para a página adequada de acordo com o tipo do usuário
-            if(user.getUserType() == UserType.PESSOA_FISICA)
-                return "redirect:/physicalperson";
-            else if(user.getUserType() == UserType.PESSOA_JURIDICA)
-                return "redirect:/legalperson";
+            //Salva no banco de dados de usuário logado
+            LoggedUser loggedUser = new LoggedUser();
+            loggedUser.setLoggedUserEmail(user.getEmail());
+            loggedUserRepository.save(loggedUser);
+            return "redirect:/legalperson";
         }
-        return "redirect:/login";
     }
 }
