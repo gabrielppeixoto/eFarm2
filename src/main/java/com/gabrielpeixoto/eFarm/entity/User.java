@@ -46,7 +46,7 @@ public class User {
     private String address;
 
     /**
-     * CPF ou CNPJ
+     * CPF
      */
     @Column(name = "identity", nullable = false)
     private String identityNumber;
