@@ -36,14 +36,14 @@
     </header>
     <main>
       <div class="row row-cols-1 row-cols-md-3 mb-3 text-center" th:if="${dsCount > 0}">
-        <div class="col">
+        <div class="col" th:each="drug : ${drugstoreList}">
           <div class="card mb-4 rounded-3 shadow-sm">
             <div class="card-header py-3">
-              <h4 class="my-0 fw-normal">Farmácia X</h4>
+              <h4 class="my-0 fw-normal" th:text="${drug.name}"></h4>
             </div>
             <div class="card-body">
               <ul class="list-unstyled mt-3 mb-4">
-                <li>Endereço</li>
+                <li th:text="${drug.address}"></li>
               </ul>
               <button type="button" class="w-100 btn btn-lg btn-outline-primary">Entrar em contato</button>
             </div>

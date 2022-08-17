@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="pt-br" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>eFarm</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link th:href="@{/webjars/bootstrap/css/bootstrap.min.css}"
+        rel="stylesheet"/>
+</head>
+<body>
+    <header class="p-3 bg-dark text-white">
+  <div class="container">
+    <div class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start">
+      <ul class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0">
+        <li><a href="#" class="nav-link px-2 text-secondary">Home</a></li>
+        <li><form method="post" th:action="@{/legalperson/exit}"><button type="submit" class="btn btn-light">Sair</button></form></li>
+      </ul>
+    </div>
+  </div>
+</header>
+
+    <main>
+        <h2>Gerencie o estoque de sua farmácia</h2>
+
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th>Nome do remédio</th>
+                </tr>
+                <tr>
+                    <th>Quantidade em estoque</th>
+                </tr>
+                <tr>
+                    <th>Ações</th>
+                </tr>
+            </thead>
+            <tbody>
+
+            </tbody>
+        </table>
+
+        <form method="get">
+            <button class="btn btn-primary" type="submit">Adicionar novo medicamento</button>
+        </form>
+    </main>
+
+    <script th:src="@{/webjars/jquery/jquery.min.js}"></script>
+    <script th:src="@{/webjars/bootstrap/js/bootstrap.min.js}"></script>
+</body>
+</html>
