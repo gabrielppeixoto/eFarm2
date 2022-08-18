@@ -9,20 +9,20 @@
         rel="stylesheet"/>
 </head>
 <body>
-<h2>Cadastro de farmácias</h2>
+<h2>Atualização de farmácias</h2>
 
-<form method="post" th:object="${drugstore}" th:action="@{/legalperson/update/new}">
+<form method="post" th:object="${drugstore}" th:action="@{/legalperson/editDrugstore/change}">
   <div class="mb-3">
     <label for="drugstore_name" class="form-label">Razão social</label>
-    <input type="text" class="form-control" id="drugstore_name" th:field="*{'name'}" placeholder="Drogarias ABC">
+    <input type="text" class="form-control" id="drugstore_name" th:field="*{name}" placeholder="Drogarias ABC">
   </div>
   <div class="mb-3">
     <label for="drugstore_address" class="form-label">Endereço</label>
-    <input type="text" class="form-control" id="drugstore_address" th:field="*{'address'}" placeholder="Rua X">
+    <input type="text" class="form-control" id="drugstore_address" th:field="*{address}" placeholder="Rua X">
   </div>
   <div class="mb-3">
-    <label for="cnpj" class="form-label">Digite novamente seu CNPJ</label>
-    <input type="text" class="form-control" id="cnpj" th:field="*{'cnpj'}">
+    <label for="cnpj" class="form-label">Digite o CNPJ</label>
+    <input type="text" class="form-control" id="cnpj" th:field="*{cnpj}">
   </div>
   <br>
   <input type="submit" class="btn btn-primary" value="Cadastrar">

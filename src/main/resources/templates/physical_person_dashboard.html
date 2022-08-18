@@ -34,11 +34,11 @@
         <div class="row"></div>
         <div class="row"></div>
         <div class="row">
-            <form class="row g-2">
+            <form class="row g-2" method="post" th:action="@{/physicalperson/search}" th:object="${drugName}">
                 <div class="col"></div>
                 <div class="col">
                     <label for="textArea" class="visually-hidden">Digite o nome do produto</label>
-                    <input type="text" class="form-control" id="textArea" placeholder="Nome do produto">
+                    <input type="text" class="form-control" id="textArea" placeholder="Nome do produto" th:field="*{name}">
                 </div>
                 <div class="col-auto">
                     <button type="submit" class="btn btn-primary mb-3">Pesquisar</button>

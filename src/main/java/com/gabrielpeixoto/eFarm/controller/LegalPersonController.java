@@ -4,7 +4,9 @@
  */
 package com.gabrielpeixoto.eFarm.controller;
 
+import com.gabrielpeixoto.eFarm.entity.AvailableDrugs;
 import com.gabrielpeixoto.eFarm.entity.Drugstore;
+import com.gabrielpeixoto.eFarm.repository.AvailableDrugsRepository;
 import com.gabrielpeixoto.eFarm.repository.DrugstoreRepository;
 import com.gabrielpeixoto.eFarm.repository.LoggedUserRepository;
 import com.gabrielpeixoto.eFarm.repository.UserRepository;
@@ -29,6 +31,8 @@ public class LegalPersonController {
     private UserRepository userRepository;
     private DrugstoreRepository drugstoreRepository;
     private LoggedUserRepository loggedUserRepository;
+    private AvailableDrugsRepository availableDrugsRepository;
+
     /**
      * Obtém acesso à página de login
      * @return o nome do template da página de login
@@ -99,14 +103,23 @@ public class LegalPersonController {
     {
         Drugstore drugstore = new Drugstore();
         model.addAttribute("drugstore", drugstore);
-        return "paginaAtualizacao";
+        return "updateDrugstore";
+    }
+
+    @PostMapping("/editDrugstore/change")
+    public String saveUpdateChanges(@ModelAttribute("drugstore") Drugstore drugstore)
+    {
+        drugstoreRepository.save(drugstore);
+        return "redirect:/legalperson";
     }
 
     @GetMapping("/update")
     public String goToUpdatePage(Model model)
     {
         Drugstore drugstore = new Drugstore();
+        List<AvailableDrugs> availableDrugs = availableDrugsRepository.findAll();
         model.addAttribute("drugstore", drugstore);
-        return "pagina";
+        model.addAttribute("available_drugs", availableDrugs);
+        return "addProduct";
     }
 }
