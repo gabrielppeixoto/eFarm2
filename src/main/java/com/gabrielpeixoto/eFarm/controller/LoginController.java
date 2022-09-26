@@ -70,6 +70,8 @@ public class LoginController {
         return "cadastro";
     }
 
+    //TODO usar APIs já disponíveis para obter dados de endereços, no formulário de cadastro
+
     /**
      * Salva os dados do novo usuário, e volta para a tela de login
      * @param user os dados a serem salvos

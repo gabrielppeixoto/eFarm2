@@ -36,44 +36,11 @@
               </div>
             </div>
 
-
-
-                            <div class="col-12">
-                                <label for="identity" class="form-label">CPF </label>
-                                <input type="text" th:field="*{identityNumber}" class="form-control" id="identity">
-                                <div class="invalid-feedback">
-                                    Digite seu CPF.
-                                </div>
-                            </div>
-
-
             <div class="col-12">
-              <label for="address" class="form-label">Endereço</label>
-              <input type="text" th:field="*{address}" class="form-control" id="address" placeholder="1234 Main St" required>
+              <label for="identity" class="form-label">CPF </label>
+              <input type="text" th:field="*{identityNumber}" class="form-control" id="identity">
               <div class="invalid-feedback">
-                Forneça seu endereço.
-              </div>
-            </div>
-
-            <div class="col-md-5">
-              <label for="country" class="form-label">País</label>
-              <select class="form-select" id="country" required>
-                <option value="">Escolha...</option>
-                <option>Brasil</option>
-              </select>
-              <div class="invalid-feedback">
-                Escolha um país.
-              </div>
-            </div>
-
-            <div class="col-md-4">
-              <label for="state" class="form-label">Estado</label>
-              <select class="form-select" id="state" required>
-                <option value="">Escolha...</option>
-                <option>Acre</option>
-              </select>
-              <div class="invalid-feedback">
-                Forneça um estado.
+                Digite seu CPF.
               </div>
             </div>
 
@@ -85,6 +52,34 @@
               </div>
             </div>
           </div>
+
+            <div class="col-12">
+              <label for="address" class="form-label">Endereço</label>
+              <input type="text" th:field="*{address}" class="form-control" id="address" placeholder="1234 Main St" required>
+              <div class="invalid-feedback">
+                Forneça seu endereço.
+              </div>
+            </div>
+
+            <div class="col-md-5">
+              <label for="country" class="form-label">País</label>
+              <input type="text" th:field="*{country}" class="form-control" id="country" placeholder="1234 Main St" required>
+              <div class="invalid-feedback">
+                Escolha um país.
+              </div>
+            </div>
+
+            <div class="col-md-4">
+              <label for="state" class="form-label">Estado</label>
+              <input type="text" th:field="*{state}" class="form-control" id="country" placeholder="1234 Main St" required>
+              <select class="form-select" id="state" required>
+                <option value="">Escolha...</option>
+                <option>Acre</option>
+              </select>
+              <div class="invalid-feedback">
+                Forneça um estado.
+              </div>
+            </div>
 
           <div class="col-12">
             <label for="email" class="form-label">E-mail</label>
@@ -120,6 +115,29 @@
   </div>
 </footer>
 
+<script>
+  $("#cep").focusout(function () {
+    //Início do comando AJAX
+    $.ajax({
+      //O campo URL diz o caminho de onde virá os dados
+      //É importante concatenar o valor digitado no CEP
+      url: 'https://viacep.com.br/ws/' + $(this).val() + '/json/unicode',
+      //Aqui você deve preencher o tipo de dados que será lido,
+      //no caso, estamos lendo JSON.
+      dataType: 'json',
+      //SUCESS é referente a função que será executada caso
+      //ele consiga ler a fonte de dados com sucesso.
+      //O parâmetro dentro da função se refere ao nome da variável
+      //que você vai dar para ler esse objeto.
+      success: function (resposta) {
+        //Agora basta definir os valores que você deseja preencher
+        //automaticamente nos campos acima.
+        $("#address").val(resposta.logradouro);
+        $("#country").val()
+      }
+    });
+  });
+</script>
 <script th:src="@{/webjars/jquery/jquery.min.js}"></script>
 <script th:src="@{/webjars/bootstrap/js/bootstrap.min.js}"></script>
 </body>

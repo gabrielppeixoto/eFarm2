@@ -56,6 +56,8 @@ public class LegalPersonController {
         return "registerDrugstore";
     }
 
+    //TODO disponibilizar, no banco de dados, farmácias já existentes
+
     /**
      * Configura o atributo CNPJ e cadastra a farmácia no banco de dados
      * @param drugstore a farmácia a ser cadastrada
