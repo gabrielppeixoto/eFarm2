@@ -17,8 +17,32 @@
             <input type="text" class="form-control" id="drugstore_name" th:field="*{name}" placeholder="Drogarias ABC">
         </div>
         <div class="mb-3">
+            <label for="drugstore_cep" class="form-label">CEP</label>
+            <input type="text" class="form-control" id="drugstore_cep" th:field="*{address.cep}" placeholder="123456000">
+        </div>
+        <div class="mb-3">
             <label for="drugstore_address" class="form-label">Endereço</label>
-            <input type="text" class="form-control" id="drugstore_address" th:field="*{address}" placeholder="Rua X">
+            <input type="text" class="form-control" id="drugstore_address" th:field="*{address.addressName}" placeholder="Rua X">
+        </div>
+        <div class="mb-3">
+            <label for="drugstore_number" class="form-label">Número</label>
+            <input type="number" class="form-control" id="drugstore_number" th:field="*{address.addressNumber}" placeholder="1234">
+        </div>
+        <div class="mb-3">
+            <label for="drugstore_complement" class="form-label">Complemento</label>
+            <input type="text" class="form-control" id="drugstore_complement" th:field="*{address.addressComplement}" placeholder="apto 123">
+        </div>
+        <div class="mb-3">
+            <label for="drugstore_neighborhood" class="form-label">Bairro</label>
+            <input type="text" class="form-control" id="drugstore_neighborhood" th:field="*{address.neighborhood}" placeholder="Santa Rosa">
+        </div>
+        <div class="mb-3">
+            <label for="drugstore_city" class="form-label">Cidade</label>
+            <input type="text" class="form-control" id="drugstore_city" th:field="*{address.city}" placeholder="São Paulo">
+        </div>
+        <div class="mb-3">
+            <label for="drugstore_state" class="form-label">Estado</label>
+            <input type="text" class="form-control" id="drugstore_state" th:field="*{address.state}" placeholder="SP">
         </div>
         <div class="mb-3">
             <label for="cnpj" class="form-label">Digite novamente seu CNPJ</label>

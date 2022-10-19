@@ -49,14 +49,31 @@
 
                     <div class="card-body">
                         <p class="card-text" th:text="${drug.name}"></p>
-                        <p class="card-text" th:text="${drug.address}"></p>
+                        <p class="card-text" th:text="${drug.address.addressName}"></p>
                         <div class="d-flex justify-content-between align-items-center">
                             <div class="btn-group">
                                 <form method="get" th:action="@{/legalperson/update}">
-                                    <button th:object="${drugstore}" type="submit" class="btn btn-sm btn-outline-secondary">Atualizar estoque</button>
+                                    <button th:object="${drug}" type="submit"
+                                            class="btn btn-sm btn-outline-secondary"
+                                            data-bs-toggle="collapse" data-bs-target="#searchButton"
+                                            role="button" aria-expanded="false" aria-controls="collButton" >Atualizar estoque</button>
                                 </form>
+<!--                                Campo de texto que irá aparecer ao se clicar em "Atualizar estoque"-->
+                                <div class="collapse container" id="searchButton">
+                                    <div class="row">
+                                        <form class="row g-2" method="post" th:action="@{}" th:object="${drug}">
+                                            <div class="col">
+                                                <label for="textArea" class="visually-hidden">Digite o nome do produto</label>
+                                                <input type="text" class="form-control" id="textArea" placeholder="Nome do produto" th:field="*{name}">
+                                            </div>
+                                            <div class="col-auto">
+                                                <button type="submit" class="btn btn-primary mb-3">Pesquisar</button>
+                                            </div>
+                                        </form>
+                                    </div>
+                                </div>
                                 <form method="get" th:action="@{/legalperson/editDrugstore}">
-                                    <button th:object="${drugstore}" type="submit" class="btn btn-sm btn-outline-secondary">Editar informações</button>
+                                    <button th:object="${drug}" type="submit" class="btn btn-sm btn-outline-secondary">Editar informações</button>
                                 </form>
                             </div>
                         </div>

@@ -37,8 +37,8 @@ public class Drugstore {
     /**
      * Endereço da farmácia
      */
-    @Column(name = "drugstore_address", nullable = false)
-    private String address;
+    @OneToOne(cascade = CascadeType.ALL)
+    private Address address;
 
     /**
      * Chave estrangeira para o dono da farmácia

@@ -42,8 +42,8 @@ public class User {
     /**
      * Endereço
      */
-    @Column(name = "address", nullable = false)
-    private String address;
+    @OneToOne(cascade = CascadeType.ALL)
+    private Address address;
 
     /**
      * CPF
@@ -76,7 +76,7 @@ public class User {
     @Column(name = "user_type")
     private UserType userType;
 
-    public User(String completeName, Integer age, String address, String identityNumber) {
+    public User(String completeName, Integer age, Address address, String identityNumber) {
         this.completeName = completeName;
         this.age = age;
         this.address = address;

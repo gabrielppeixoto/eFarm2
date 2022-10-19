@@ -4,22 +4,25 @@
  */
 package com.gabrielpeixoto.eFarm.controller;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.JsonNode;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.gabrielpeixoto.eFarm.entity.AvailableDrugs;
 import com.gabrielpeixoto.eFarm.entity.Drugstore;
+import com.gabrielpeixoto.eFarm.entity.Product;
 import com.gabrielpeixoto.eFarm.repository.AvailableDrugsRepository;
 import com.gabrielpeixoto.eFarm.repository.DrugstoreRepository;
 import com.gabrielpeixoto.eFarm.repository.LoggedUserRepository;
 import com.gabrielpeixoto.eFarm.repository.UserRepository;
 import jakarta.validation.Valid;
 import lombok.AllArgsConstructor;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
+import org.springframework.web.client.RestTemplate;
 
-import java.util.List;
+import java.util.*;
 
 @Controller
 @RequestMapping("/legalperson")
@@ -123,5 +126,38 @@ public class LegalPersonController {
         model.addAttribute("drugstore", drugstore);
         model.addAttribute("available_drugs", availableDrugs);
         return "addProduct";
+    }
+
+    /**
+     * Funções reservadas para consulta a medicamentos via API externa
+     */
+
+    @GetMapping("/search")
+    public String goToDrugSearchPage(Model model)
+    {
+        List<Product> result = new ArrayList<>();
+        model.addAttribute("result", result);
+        return "drugRegisterForm";
+    }
+
+    @GetMapping(value = {"/search/{dName}", "/search"})
+    public String searchDrugs(@PathVariable("dName") Optional<String> drugName, Model model) throws JsonProcessingException {
+        List<String> results = new ArrayList<>();
+        if(drugName.isPresent())
+        {
+            String url = "https://bula.vercel.app/pesquisar?nome=" + drugName;
+            RestTemplate template = new RestTemplate();
+            ResponseEntity<String> entity = template.getForEntity(url, String.class);
+            // Trata o JSON da resposta
+            ObjectMapper mapper = new ObjectMapper();
+            JsonNode root = mapper.readTree(entity.getBody());
+            JsonNode content = root.path("content");
+            //Como a resposta deve ser uma array de objetos, utiliza um iterador para percorrê-los
+            Iterator<JsonNode> nodeIterator = content.elements();
+            //Adiciona cada nome de medicamento na lista de resultados
+            nodeIterator.forEachRemaining(node -> results.add(node.path("nomeProduto").asText()));
+        }
+        model.addAttribute("result", results);
+        return "drugRegisterForm";
     }
 }

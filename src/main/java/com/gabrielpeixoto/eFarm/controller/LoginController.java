@@ -15,10 +15,7 @@ import com.gabrielpeixoto.eFarm.service.UserService;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
 import java.util.ArrayList;
@@ -27,6 +24,7 @@ import java.util.List;
 @Controller
 @RequestMapping("/login")
 @AllArgsConstructor
+@CrossOrigin(origins = "https://viacep.com.br")
 public class LoginController {
 
     /**
@@ -70,8 +68,6 @@ public class LoginController {
         return "cadastro";
     }
 
-    //TODO usar APIs já disponíveis para obter dados de endereços, no formulário de cadastro
-
     /**
      * Salva os dados do novo usuário, e volta para a tela de login
      * @param user os dados a serem salvos
@@ -94,8 +90,6 @@ public class LoginController {
     @PostMapping("/processaLogin")
     public String login(@ModelAttribute("loginInfo") @Valid User user)
     {
-//        System.out.println(userService.getUserByEmail(user.getEmail()).getPassword());
-//        System.out.println(user.getPassword());
         //Usuário não encontrado
         if(userService.getUserByEmail(user.getEmail()) == null)
             throw new UserNotFoundException();
@@ -110,4 +104,9 @@ public class LoginController {
             return "redirect:/legalperson";
         }
     }
+
+    /**
+     * Funções para tratamento das requisições para a API ViaCEP, para preenchimento automático
+     * do formulário via CEP
+     */
 }

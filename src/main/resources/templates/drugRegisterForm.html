@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="pt-br" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>eFarm - Adicionar produto</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link th:href="@{/webjars/bootstrap/css/bootstrap.min.css}"
+          rel="stylesheet"/>
+</head>
+<body>
+    <h2>Insira os dados do produto que deseja adicionar</h2>
+
+    <form method="get" th:action="@{/legalperson/update/search/}">
+        <label for="drugName">Nome do medicamento</label>
+        <input type="text" class="row justify-content-md-center" id="drugName">
+
+        <button type="submit">Consultar</button>
+    </form>
+
+    <!--    resultados da pesquisa por medicamentos-->
+    <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
+        <div class="col" th:each="drug : ${result}">
+            <div class="card shadow-sm">
+                <div class="card-body">
+                    <p class="card-text" th:text="${drug}"></p>
+                    <div class="d-flex justify-content-between align-items-center">
+                        <div class="btn-group">
+                            <form method="post" th:action="@{}">
+                                <label for="quantity">Digite a quantidade a ser adicionada</label>
+                                <input type="number" id="quantity">
+                                <button th:object="${drugstore}" type="submit"
+                                        class="btn btn-sm btn-outline-secondary">Atualizar estoque</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script th:src="@{/webjars/jquery/jquery.min.js}"></script>
+    <script th:src="@{/webjars/bootstrap/js/bootstrap.min.js}"></script>
+</body>
+</html>
